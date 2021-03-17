@@ -17,13 +17,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default Vue.extend({
   computed: {
     todos() {
       return this.$store.state.todos.list
     },
+  },
+  mounted() {
+    this.retrieveInitial()
   },
   methods: {
     addTodo(e) {
@@ -32,6 +35,9 @@ export default Vue.extend({
     },
     ...mapMutations({
       toggle: 'todos/toggle',
+    }),
+    ...mapActions({
+      retrieveInitial: 'todos/retrieveInitial',
     }),
   },
 })
