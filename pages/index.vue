@@ -1,34 +1,40 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">nuxt_todo_project</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <h1 class="title">Nuxt Todo Project</h1>
+      <ul>
+        <li v-for="todo in todos" :key="todo.text">
+          <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
+          <span :class="{ done: todo.done }">{{ todo.text }}</span>
+        </li>
+        <li>
+          <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapMutations } from 'vuex'
 
-export default Vue.extend({})
+export default Vue.extend({
+  computed: {
+    todos() {
+      return this.$store.state.todos.list
+    },
+  },
+  methods: {
+    addTodo(e) {
+      this.$store.commit('todos/add', e.target.value)
+      e.target.value = ''
+    },
+    ...mapMutations({
+      toggle: 'todos/toggle',
+    }),
+  },
+})
 </script>
 
 <style>
@@ -61,5 +67,9 @@ export default Vue.extend({})
 
 .links {
   padding-top: 15px;
+}
+
+.done {
+  text-decoration: line-through;
 }
 </style>
