@@ -3,10 +3,9 @@
     <div>
       <h1 class="title">Nuxt Todo Project</h1>
       <ul>
-        <li v-for="todo in todos" :key="todo.text">
-          <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
-          <span :class="{ done: todo.done }">{{ todo.text }}</span>
-        </li>
+        <div v-for="(todo, index) in todos" :key="index">
+          <TodoItem :todo="todo" />
+        </div>
         <li>
           <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
         </li>
@@ -17,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default Vue.extend({
   computed: {
@@ -33,9 +32,6 @@ export default Vue.extend({
       this.$store.commit('todos/add', e.target.value)
       e.target.value = ''
     },
-    ...mapMutations({
-      toggle: 'todos/toggle',
-    }),
     ...mapActions({
       retrieveInitial: 'todos/retrieveInitial',
     }),
@@ -73,9 +69,5 @@ export default Vue.extend({
 
 .links {
   padding-top: 15px;
-}
-
-.done {
-  text-decoration: line-through;
 }
 </style>
