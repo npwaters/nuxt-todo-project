@@ -1,8 +1,13 @@
+import { ActionTree, MutationTree } from 'vuex'
+import { TodoItem } from '~/types'
+
 export const state = () => ({
-  list: [],
+  list: [] as Array<TodoItem>,
 })
 
-export const mutations = {
+export type RootState = ReturnType<typeof state>
+
+export const mutations: MutationTree<RootState> = {
   setInitial(state, todos) {
     state.list = todos
   },
@@ -20,7 +25,7 @@ export const mutations = {
   },
 }
 
-export const actions = {
+export const actions: ActionTree<RootState, RootState> = {
   async retrieveInitial({ commit }) {
     const todos = await this.$axios.$get('/api')
     commit('setInitial', todos)
