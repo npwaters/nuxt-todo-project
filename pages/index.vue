@@ -29,7 +29,7 @@ export default Vue.extend({
     this.retrieveInitial()
   },
   methods: {
-    addTodo(e) {
+    addTodo(e: { target: HTMLInputElement }) {
       this.$store.commit('todos/add', e.target.value)
       e.target.value = ''
     },
