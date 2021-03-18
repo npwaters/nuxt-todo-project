@@ -1,14 +1,12 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="title">Nuxt Todo Project</h1>
+      <h3 >My Nuxt Todo Project</h3>
       <ul>
         <div v-for="(todo, index) in todos" :key="index">
           <TodoItem :todo="todo" />
         </div>
-        <li>
-          <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
-        </li>
+        <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
       </ul>
     </div>
   </div>
