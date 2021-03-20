@@ -15,10 +15,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapActions } from 'vuex'
+import { TodoItem } from '~/types'
 
 export default Vue.extend({
   computed: {
-    todos() {
+    todos(): TodoItem[] {
       return this.$store.state.todos.list
     },
   },
