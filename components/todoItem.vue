@@ -2,7 +2,7 @@
   <b-container fluid="xl">
     <b-row class="todo-item">
       <b-col cols="2" class="todo-item-layout">
-        <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
+        <input :checked="todo.done" @change="markComplete(todo)" type="checkbox" />
       </b-col>
       <b-col class="todo-item-layout">
         <span :class="{ done: todo.done }">{{ todo.text }}</span>
@@ -25,8 +25,13 @@ export default Vue.extend({
     },
   },
   methods: {
+    markComplete(todo: TodoItem) {
+      // this.toggle(todo)
+      this.remove(todo)
+    },
     ...mapMutations({
       toggle: 'todos/toggle',
+      remove: 'todos/remove',
     }),
   },
 })
