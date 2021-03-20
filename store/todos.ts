@@ -1,4 +1,4 @@
-import { ActionTree, MutationTree } from 'vuex'
+import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import { uuid } from 'vue-uuid'
 import { TodoItem } from '~/types'
 
@@ -38,4 +38,8 @@ export const actions: ActionTree<RootState, RootState> = {
     }
     commit('setInitial', todos)
   },
+}
+
+export const getters: GetterTree<RootState, RootState> = {
+  todos: (state) => state.list,
 }

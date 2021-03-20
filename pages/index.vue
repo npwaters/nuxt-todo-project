@@ -14,13 +14,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { TodoItem } from '~/types'
 
 export default Vue.extend({
   computed: {
+    ...mapGetters({
+      getTodos: 'todos/todos',
+    }),
     todos(): TodoItem[] {
-      return this.$store.state.todos.list
+      return this.getTodos
     },
   },
   mounted() {
