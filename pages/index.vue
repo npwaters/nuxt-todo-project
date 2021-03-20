@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <h3 >My Nuxt Todo Project</h3>
+      <h3>My Nuxt Todo Project</h3>
       <ul>
-        <div v-for="(todo, index) in todos" :key="index">
+        <div v-for="todo in todos" :key="todo.todoId">
           <TodoItem :todo="todo" />
         </div>
         <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
