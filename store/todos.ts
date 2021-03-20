@@ -1,4 +1,5 @@
 import { ActionTree, MutationTree } from 'vuex'
+import { uuid } from 'vue-uuid'
 import { TodoItem } from '~/types'
 
 export const state = () => ({
@@ -13,11 +14,12 @@ export const mutations: MutationTree<RootState> = {
   },
   add(state: RootState, text: string) {
     state.list.push({
+      todoId: uuid.v4(),
       text,
       done: false,
     })
   },
-  remove(state, { todo }) {
+  remove(state, todo: TodoItem) {
     state.list.splice(state.list.indexOf(todo), 1)
   },
   toggle(state, todo: TodoItem) {
@@ -31,6 +33,7 @@ export const actions: ActionTree<RootState, RootState> = {
     const todos: TodoItem[] = []
     for (const item of result) {
       const todo: TodoItem = item
+      todo.todoId = uuid.v4()
       todos.push(todo)
     }
     commit('setInitial', todos)
