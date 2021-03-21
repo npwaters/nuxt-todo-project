@@ -1,32 +1,38 @@
 import _ from 'lodash'
 import Vuex from 'vuex'
 import { createLocalVue } from '@vue/test-utils'
+import { mutations, actions, getters } from '~/store/todos'
 
-describe('store/todos', () => {
-  // ----------------------------------------------------
-  // focus on the code from here...
+describe('store/todos.ts', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
-  let NuxtStore
   let store
 
-  beforeAll(async () => {
-    // note the store will mutate across tests
-    const storePath = `${process.env.buildDir}/store.js`
-    NuxtStore = await import(storePath)
+  beforeEach(() => {
+    store = new Vuex.Store({
+      modules: {
+        todos: {
+          namespaced: true,
+          state: {
+            list: [
+              { id: '1', text: '1', done: false },
+              { id: '2', text: '2', done: false },
+              { id: '3', text: '3', done: false },
+            ],
+          },
+          mutations,
+          actions,
+          getters,
+        },
+      },
+    })
   })
-
-  beforeEach(async () => {
-    store = await NuxtStore.createStore()
-  })
-  // ...to here is what matters
-  // ----------------------------------------------------
 
   describe('todos', () => {
     let todos
 
     beforeEach(() => {
-      todos = store.state.todos.list
+      todos = store.getters['todos/todos']
     })
 
     test('getter is a function', () => {
