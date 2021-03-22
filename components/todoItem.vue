@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid="xl">
+  <b-container fluid="xl" class="todo-container">
     <b-row class="todo-item">
       <b-col cols="2" class="todo-item-layout">
         <input :checked="todo.done" @change="markComplete(todo)" type="checkbox" />
@@ -43,6 +43,13 @@ export default Vue.extend({
 .done {
   text-decoration: line-through;
 }
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .todo-item {
   border: solid black thin;
   margin-bottom: 0.3em;
@@ -50,6 +57,9 @@ export default Vue.extend({
   /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
   transition: 0.3s;
   min-height: 50px;
+  min-width: 300px;
+  max-width: 650px;
+  width: 100%;
 }
 
 .todo-item:hover {

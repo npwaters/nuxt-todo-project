@@ -1,13 +1,11 @@
 <template>
   <div class="container">
-    <div>
-      <h3>My Nuxt Todo Project</h3>
-      <ul>
-        <div v-for="todo in todos" :key="todo.todoId">
-          <TodoItem :todo="todo" />
-        </div>
-        <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
-      </ul>
+    <h3>My Nuxt Todo Project</h3>
+    <div class="todos">
+      <div v-for="todo in todos" :key="todo.todoId" class="todo">
+        <TodoItem :todo="todo" />
+      </div>
+      <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
     </div>
   </div>
 </template>
@@ -46,9 +44,22 @@ export default Vue.extend({
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.todo {
+  width: 100%;
 }
 
 .title {
