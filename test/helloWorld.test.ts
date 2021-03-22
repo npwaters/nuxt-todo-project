@@ -1,6 +1,6 @@
 // src/components/__tests__/HelloWorld.spec.ts
 import { shallowMount } from '@vue/test-utils'
-import helloWorld from '../components/helloWorld'
+import helloWorld from '../components/helloWorld.vue'
 
 describe('HelloWorld.vue', () => {
   test('renders props.msg when passed', () => {
