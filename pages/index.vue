@@ -2,9 +2,7 @@
   <div class="container">
     <h3>My Nuxt Todo Project</h3>
     <div class="todos">
-      <div v-for="todo in todos" :key="todo.todoId" class="todo">
-        <TodoItem :todo="todo" />
-      </div>
+      <TodoItem v-for="todo in todos" :key="todo.todoId" class="todo" :todo="todo" />
       <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
     </div>
   </div>
