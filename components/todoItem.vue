@@ -4,8 +4,11 @@
       <b-col cols="2" class="todo-item-layout">
         <input :checked="todo.done" @change="markComplete(todo)" type="checkbox" />
       </b-col>
-      <b-col class="todo-item-layout">
+      <b-col cols="7" class="todo-item-layout">
         <span :class="{ done: todo.done }">{{ todo.text }}</span>
+      </b-col>
+      <b-col cols="3" class="todo-item-layout">
+        <b-button size="sm" @click="remove(todo)">Delete</b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -26,8 +29,7 @@ export default Vue.extend({
   },
   methods: {
     markComplete(todo: TodoItem) {
-      // this.toggle(todo)
-      this.remove(todo)
+      this.toggle(todo)
     },
     ...mapMutations({
       toggle: 'todos/toggle',

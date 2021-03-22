@@ -4,7 +4,12 @@ import TodoItem from '@/components/todoItem.vue'
 describe('TodoItem', () => {
   test('is a Vue instance', () => {
     const wrapper = shallowMount(TodoItem, {
-      stubs: { 'b-container': true, 'b-row': true, 'b-col': true },
+      stubs: {
+        'b-container': true,
+        'b-row': true,
+        'b-col': true,
+        'b-button': true
+      },
       propsData: {
         todo: { id: '1', text: '1', done: false }
       }
