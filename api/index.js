@@ -3,9 +3,9 @@ const app = express()
 
 app.get('/', (req, res) => {
   res.send([
-    { text: '1', done: false },
-    { text: '2', done: false },
-    { text: '3', done: false },
+    { id: '1', text: '1', done: false },
+    { id: '2', text: '2', done: false },
+    { id: '3', text: '3', done: false },
   ])
 })
 
