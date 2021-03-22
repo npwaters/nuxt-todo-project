@@ -16,4 +16,27 @@ describe('TodoItem', () => {
     })
     expect(wrapper.vm).toBeTruthy()
   })
+
+  test('increments counter value on click', async () => {
+    const wrapper = shallowMount(TodoItem, {
+      stubs: {
+        'b-container': true,
+        'b-row': true,
+        'b-col': true,
+        'b-button': true
+      },
+      propsData: {
+        todo: { id: '1', text: '1', done: false }
+      }
+    })
+    const button = wrapper.find('input')
+    const text = wrapper.find('span')
+
+    // expect(text.text()).toContain('Total clicks: 0')
+
+    await button.trigger('change')
+
+    expect(text.text()).toContain('Total clicks: 1')
+  })
+
 })
