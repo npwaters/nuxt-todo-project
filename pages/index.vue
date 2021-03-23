@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <h3>My Nuxt Todo Project</h3>
-    <div class="todos">
+    <div v-if='isLoaded' class="todos">
       <TodoItem v-for="todo in todos" :key="todo.todoId" class="todo" :todo="todo" />
       <input @keyup.enter="addTodo" placeholder="What needs to be done?" />
     </div>
+    <div v-else>Loading todos ...</div>
   </div>
 </template>
 
@@ -14,6 +15,11 @@ import { mapActions, mapGetters } from 'vuex'
 import { TodoItem } from '~/types'
 
 export default Vue.extend({
+  data() {
+    return {
+      isLoaded: false
+    }
+  },
   computed: {
     ...mapGetters({
       getTodos: 'todos/todos',
@@ -24,6 +30,7 @@ export default Vue.extend({
   },
   mounted() {
     this.retrieveInitial()
+    this.isLoaded = true
   },
   methods: {
     addTodo(e: { target: HTMLInputElement }) {
